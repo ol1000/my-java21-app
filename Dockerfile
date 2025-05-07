@@ -6,7 +6,7 @@
 
  # Download the New Relic Java agent
  ARG NEW_RELIC_VERSION=latest
- RUN wget -O newrelic.jar "https://download.newrelic.com/newrelic/java-agent/newrelic-java/${NEW_RELIC_VERSION}/newrelic-java-${NEW_RELIC_VERSION}.zip" && \
+ RUN wget -O newrelic.jar "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
      unzip newrelic.jar && \
      mv newrelic/newrelic.jar . && \
      rm -rf newrelic newrelic.jar.zip
