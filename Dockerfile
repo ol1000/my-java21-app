@@ -5,11 +5,14 @@
  WORKDIR /app
 
  # Download the New Relic Java agent
- ARG NEW_RELIC_VERSION=latest
- RUN curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip && \
-     unzip newrelic-java.zip && \
-     mv newrelic/newrelic.jar . && \
-     rm -rf newrelic newrelic.jar.zip
+ RUN mkdir -p /usr/local/newrelic
+ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
+ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
+
+ 
+ 
+ 
+ 
 
  # Copy the Maven wrapper
  COPY mvnw .
