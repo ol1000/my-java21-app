@@ -9,11 +9,6 @@
 ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
 ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
 
- 
- 
- 
- 
-
  # Copy the Maven wrapper
  COPY mvnw .
  COPY .mvn ./.mvn
@@ -44,4 +39,5 @@ ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
  ENV NEW_RELIC_LICENSE_KEY="1c0ecbca7554fedde4f50efd6ddc8b11FFFFNRAL"
 
  # Define the command to run the application with the New Relic agent
- ENTRYPOINT ["java", "-javaagent:./newrelic.jar", "-jar", JAR_FILE]
+ ENTRYPOINT ["java","-javaagent:/usr/local/newrelic/newrelic.jar","-jar","/app/my-application.jar"]
+
