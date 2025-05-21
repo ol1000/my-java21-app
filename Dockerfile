@@ -6,7 +6,7 @@
 
  # Download the New Relic Java agent
  ARG NEW_RELIC_VERSION=latest
- RUN curl -O "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip" && \
+ RUN curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip && \
      unzip newrelic-java.zip && \
      mv newrelic/newrelic.jar . && \
      rm -rf newrelic newrelic.jar.zip
