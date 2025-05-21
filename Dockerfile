@@ -38,7 +38,7 @@
 
  # Set New Relic environment variables
  ENV NEW_RELIC_APP_NAME="YourJava21App-Docker"
- ENV NEW_RELIC_LICENSE_KEY="c62a25de1258779832a6ff012ab2f75eFFFFNRAL"
+ ENV NEW_RELIC_LICENSE_KEY="1c0ecbca7554fedde4f50efd6ddc8b11FFFFNRAL"
 
  # Define the command to run the application with the New Relic agent
  ENTRYPOINT ["java", "-javaagent:./newrelic.jar", "-jar", JAR_FILE]
