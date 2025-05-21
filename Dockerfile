@@ -10,17 +10,17 @@ ADD ./newrelic/newrelic.jar /usr/local/newrelic/newrelic.jar
 ADD ./newrelic/newrelic.yml /usr/local/newrelic/newrelic.yml
 
  # Copy the Maven wrapper
- COPY mvnw .
- COPY .mvn ./.mvn
+ cp mvnw .
+ cp .mvn ./.mvn
 
  # Copy the pom.xml file
- COPY pom.xml .
+ cp pom.xml .
 
  # Download dependencies (this layer will be cached if pom.xml doesn't change)
  RUN ./mvnw dependency:go-offline -B
 
  # Copy the application source code
- COPY src ./src
+ cp src ./src
 
  # Package the application
  RUN ./mvnw package -DskipTests
