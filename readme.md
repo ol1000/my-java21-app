@@ -7,3 +7,6 @@ adding synth and infra deployment markers
 
 now ahve the secrets key there
 
+
+running against my nrpro account now
+
