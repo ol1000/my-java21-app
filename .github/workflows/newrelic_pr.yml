@@ -13,7 +13,7 @@ jobs:
         run: |
           for ENTITY_QUERY in "name = 'Booking Journey' AND domain = 'SYNTH'" "name = 'ubuntu-gnu-linux-24-04-3' AND domain = 'INFRA'"
           do
-            curl -X POST https://api.eu.newrelic.com/graphql \
+            curl -X POST https://api.newrelic.com/graphql \
               -H "Content-Type: application/json" \
               -H "Api-Key: ${{ secrets.NEW_RELIC_API_KEY }}" \
               --data "{
