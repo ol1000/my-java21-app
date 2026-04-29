@@ -1,0 +1,22 @@
+name: New Relic PR Marker
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  newrelic-marker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Change Markers to New Relic
+        # We loop through both your entities to ensure they both get the marker
+        run: |
+          for ENTITY_QUERY in "name = 'Booking Journey' AND domain = 'SYNTH'" "name = 'ubuntu-gnu-linux-24-04-3' AND domain = 'INFRA'"
+          do
+            curl -X POST https://api.eu.newrelic.com/graphql \
+              -H "Content-Type: application/json" \
+              -H "Api-Key: ${{ secrets.NEW_RELIC_API_KEY }}" \
+              --data "{
+                \"query\": \"mutation { changeTrackingCreateEvent(changeTrackingEvent: { categoryAndTypeData: { kind: { category: \\\"DEPLOYMENT\\\", type: \\\"BASIC\\\" }, categoryFields: { deployment: { version: \\\"${{ github.event.pull_request.head.sha }}\\\" } } }, description: \\\"PR #${{ github.event.number }}: ${{ github.event.pull_request.title }}\\\", groupId: \\\"pr-${{ github.event.number }}\\\", entitySearch: { query: \\\"$ENTITY_QUERY\\\" }, user: \\\"${{ github.actor }}\\\" }) { changeTrackingEvent { changeTrackingId } } }\"
+              }"
+          done
